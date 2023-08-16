@@ -25,3 +25,20 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Angular (in Node)
+ - **Initialize a new Angular project**;
+    ```bash
+    ng new project-name
+    ng serve
+    ng generate component component-name
+    ng build --prod
+    npm init
+    npm install package-name
+    git init
+    git clone repository-url
+    git add .
+    git commit -m "commit message"
+    git push origin branch-name
+    git pull origin branch-name
+    
