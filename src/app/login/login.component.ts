@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   email: string = '';
   password: string = '';
@@ -15,8 +15,19 @@ export class LoginComponent {
 
   constructor(private http: HttpClient, private router: Router) { } // Inject HttpClient and Router
 
+  ngOnInit(): void {
+    const userString = sessionStorage.getItem('user');
+
+    if (userString) { // This will be false if userString is null or an empty string
+      const user = JSON.parse(userString);
+      if (user) {
+        this.router.navigate(['/dashboard']);
+      }
+    }
+  }
+
   onSubmit() {
-    const authEndpoint = 'http://localhost:3000/api/auth';
+    const authEndpoint = 'http://localhost:4200/api/auth';
 
     // Sending email and password to the server
     this.http.post(authEndpoint, {
@@ -39,8 +50,12 @@ export class LoginComponent {
         }
       },
       error => {
-        this.errorMessage = 'An error occurred!';
-        console.error('Error during authentication:', error);
+        if (error.status === 401) {
+          this.errorMessage = 'Invalid email or password!';
+        } else {
+          this.errorMessage = 'An unexpected error occurred!';
+        }
+        console.error('Error during authentication:', error.message, error.status, error.error);
       }
     );
   }
