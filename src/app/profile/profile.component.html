@@ -1,0 +1,7 @@
+<p>profile works!</p>
+<form (ngSubmit)="onSubmit()">
+    <input [(ngModel)]="user.username" name="username" placeholder="Username">
+    <input [(ngModel)]="user.birthdate" name="birthdate" placeholder="Birthdate">
+    <input [(ngModel)]="user.age" type="number" name="age" placeholder="Age">
+    <button type="submit">Save Changes</button>
+</form>
