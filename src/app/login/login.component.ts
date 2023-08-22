@@ -16,7 +16,6 @@ export class LoginComponent {
   constructor(private http: HttpClient, private router: Router) { } // Inject HttpClient and Router
 
   onSubmit() {
-    // Your server endpoint that handles authentication
     const authEndpoint = 'http://localhost:3000/api/auth';
 
     // Sending email and password to the server
