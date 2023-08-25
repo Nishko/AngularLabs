@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    const authEndpoint = 'http://localhost:4200/api/auth';
+    const authEndpoint = 'http://localhost:3000/api/auth';
 
     // Sending email and password to the server
     this.http.post(authEndpoint, {
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
           const userWithoutPassword = { ...response, password: undefined };
           sessionStorage.setItem('user', JSON.stringify(userWithoutPassword));
 
-          this.router.navigate(['/dashboard']); // Redirect to dashboard
+          this.router.navigate(['/account']); // Redirect to dashboard
           this.errorMessage = '';
         } else {
           this.errorMessage = 'Invalid email or password!';
